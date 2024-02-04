@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllainIndustries</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #111; /* Set dark background color */
+            color: #f3f3f3; /* Set text color to a cream color */
+            line-height: 1.5;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #000; /* Change header background color to dark */
+            color: white;
+        }
+
+        #imageContainer {
+            text-align: center;
+            margin-top: 200px; /* Keep the image margin unchanged */
+            position: relative;
+        }
+
+        #scrollingText {
+            position: absolute;
+            top: 90%; /* Lower the text more */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px; /* Increase text size */
+            color: #f3f3f3; /* Set text color to a cream color */
+            opacity: 0; /* Set initial opacity to 0 */
+            transition: opacity 0.8s ease-in-out; /* Smooth transition */
+        }
+
+        #scrollingText p {
+            margin: 0;
+            display: block;
+            opacity: 0;
+            transform: translateY(1em);
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        }
+
+        #scrollingText p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Allain Industries</h1>
+</header>
+
+<div id="imageContainer">
+    <img src="croppingWebsite/templates/allain.jpeg" alt="Allain Industries Image" width="500">
+    <div id="scrollingText">
+        <p>The Final Reich</p>
+        <p>Is To Advent...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var scrolled = window.scrollY;
+        var textContainer = document.getElementById('scrollingText');
+
+        // Adjust the value (e.g., 500) based on the desired scroll effect
+        var opacity = 1 - (scrolled / 500);
+
+        textContainer.style.opacity = opacity;
+
+        // Check each paragraph and add 'visible' class when in view
+        var paragraphs = document.querySelectorAll('#scrollingText p');
+        paragraphs.forEach(function (paragraph, index) {
+            var offset = paragraph.offsetTop;
+            var distance = Math.abs(scrolled - offset);
+
+            // Adjust the value (e.g., 200) based on the desired scroll effect
+            var delay = distance / 200;
+
+            if (delay < 1) {
+                setTimeout(function () {
+                    paragraph.classList.add('visible');
+                }, delay * 1000);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
