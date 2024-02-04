@@ -1,0 +1,32 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cropping Website</title>
+</head>
+<body>
+
+    <h1>Image Cropping Website</h1>
+
+    <!-- Add this to your form tag -->
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Upload Image</button>
+    </form>
+
+    {% if image_path %}
+        <h2>Uploaded Image</h2>
+        <img src="{{ url_for('get_image') }}" alt="Uploaded Image">
+    {% endif %}
+
+
+    <!-- Footer -->
+    <footer>
+        <p>Designed by AllainIndustries @ 2024</p>
+    </footer>
+
+</body>
+</html>
